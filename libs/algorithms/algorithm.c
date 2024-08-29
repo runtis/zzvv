@@ -1,3 +1,16 @@
 //
 // Created by yaros on 18.02.2024.
 //
+
+#include <stdio.h>
+
+
+void swap(void * a, void * b, size_t len){
+    unsigned char * p = a, * q = b, tmp;
+    for (size_t i = 0; i != len; ++i)
+    {
+        tmp = p[i];
+        p[i] = q[i];
+        q[i] = tmp;
+    }
+}

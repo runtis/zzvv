@@ -9,4 +9,6 @@ bitset/bitset.h
         vector/vector.c
         vector/vectorVoid.h
         vector/vectorVoid.c
+        matrix/matrix.h
+        matrix/matrix.c
 )

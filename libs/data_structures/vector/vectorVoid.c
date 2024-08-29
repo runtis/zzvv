@@ -17,7 +17,6 @@ vectorVoid createVectorV(size_t n, size_t baseTypeSize) {
     result.size = 0;
     result.capacity = n;
     result.baseTypeSize = baseTypeSize;
-    printf("Vector void has been successfully initialized\n");
     return result;
 }
 void reserveV(vectorVoid *v, size_t newCapacity) {
@@ -28,7 +27,6 @@ void reserveV(vectorVoid *v, size_t newCapacity) {
     }
     v->capacity = newCapacity;
     v->size = newCapacity < v->size ? newCapacity : v->size;
-    printf("Memory has been successfully reallocated\n");
 }
 void clearV(vectorVoid *v) {
     v->size = 0;
@@ -43,10 +41,10 @@ void deleteVectorV(vectorVoid *v) {
     free(v->data);
 }
 bool isEmptyV(vectorVoid *v) {
-    return v->size == 0 ? true : false;
+    return v->size == 0;
 }
 bool isFullV(vectorVoid *v) {
-    return v->size == v->capacity ? true : false;
+    return v->size == v->capacity;
 }
 void getVectorValueV(vectorVoid *v, size_t index, void *destination) {
     char *source = (char *) v->data + index * v->baseTypeSize;
