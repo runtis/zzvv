@@ -9,35 +9,54 @@
 #include "libs/data_structures/matrix/matrix.h"
 #include "libs/algorithms/algorithm.h"
 
-long long findSumOfMaxesOfPseudoDiagonal(matrix m) {
-    long long res = 0;
-    for (int i = 0; i < m.nCols + m.nRows - 1; i++) {
-        int row = max(0, m.nRows - i - 1);
-        int col = max(0, i - m.nRows + 1);
-        if (row != col) {
-            int max_value = INT_MIN;
-            while (row < m.nRows && col < m.nCols) {
-                max_value = max(max_value, m.values[row][col]);
-                row++;
-                col++;
+int getMinInArea(matrix m) {
+    if (m.nRows > 0 && m.nCols > 0) {
+        position max_pos = getMaxValuePos(m);
+        int min = m.values[max_pos.rowIndex][max_pos.colIndex];
+        for (int i = 0; i < m.nRows; i++) {
+            int index = max_pos.colIndex - (max_pos.rowIndex - i);
+            for (int j = index; j < max_pos.rowIndex*2 - i + 1 && j < m.nCols; j++) {
+                if (m.values[i][j] < min) {
+                    min = m.values[i][j];
+                }
             }
-            res += max_value;
         }
+        return min;
+    } else {
+        return 0;
     }
-    return res;
 }
 
-void test_findSumOfMaxesOfPseudoDiagonal() {
-    matrix m = createMatrixFromArray((int[]) {3, 2, 5, 4,
-                                              1, 3, 6, 3,
-                                              3, 2, 1, 2},3, 4);
-    assert(findSumOfMaxesOfPseudoDiagonal(m) == 20);
+void test_getMinInArea_1() {
+    matrix m = createMatrixFromArray((int[]) {},0, 0);
+    assert(getMinInArea(m) == 0);
     freeMemMatrix(&m);
 }
 
+void test_getMinInArea_2() {
+    matrix m = createMatrixFromArray((int[]) {10, 7, 5, 6,
+                                              3, 11, 8, 9,
+                                              4, 1, 12, 2},3, 4);
+    assert(getMinInArea(m) == 5);
+    freeMemMatrix(&m);
+}
+
+void test_getMinInArea_3() {
+    matrix m = createMatrixFromArray((int[]) {6, 8, 9, 2,
+                                              7, 12, 3, 4,
+                                              10, 11, 5, 1},3, 4);
+    assert(getMinInArea(m) == 6);
+    freeMemMatrix(&m);
+}
+
+void test_getMinInArea() {
+    test_getMinInArea_1();
+    test_getMinInArea_2();
+    test_getMinInArea_3();
+}
 
 int main() {
-    test_findSumOfMaxesOfPseudoDiagonal();
+    test_getMinInArea();
 
     return 0;
 }
