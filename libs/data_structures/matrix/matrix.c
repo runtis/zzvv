@@ -71,7 +71,7 @@ void outputMatrices(matrix *ms, int nMatrices){
 }
 
 void swapRows(matrix *m, int i1, int i2){
-    assert(i1 < m->nRows && i2 < m->nRows && i1 == 0 && i2 >= 0);
+    assert(i1 < m->nRows && i2 < m->nRows && i1 >= 0 && i2 >= 0);
     swap(&m->values[i1], &m->values[i2], sizeof(m->values[i1]));
 }
 
