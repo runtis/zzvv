@@ -42,3 +42,64 @@ void deleteVectorV(vectorVoid *v) {
     v->baseTypeSize = 0;
     free(v->data);
 }
+bool isEmptyV(vectorVoid *v) {
+    return v->size == 0 ? true : false;
+}
+bool isFullV(vectorVoid *v) {
+    return v->size == v->capacity ? true : false;
+}
+void getVectorValueV(vectorVoid *v, size_t index, void *destination) {
+    char *source = (char *) v->data + index * v->baseTypeSize;
+    memcpy(destination, source, v->baseTypeSize);
+}
+void setVectorValueV(vectorVoid *v, size_t index, void *source) {
+    char *destination = (char *) v->data + index * v->baseTypeSize;
+    memcpy(destination, source, v->baseTypeSize);
+}
+void popBackV(vectorVoid *v) {
+    if (isEmptyV(v)) {
+        fprintf(stderr, "vector void is empty");
+        exit(1);
+    }
+    (v->size)--;
+}
+void pushBackV(vectorVoid *v, void *source) {
+    if (v->size == v->capacity) {
+        size_t newCapacity = v->capacity*2;
+        if (v->capacity == 0) {
+            newCapacity = 1;
+        }
+        reserveV(v, newCapacity);
+    }
+    setVectorValueV(v, v->size++, source);
+}
+void test1() {
+    size_t n;
+    scanf("%zd", &n);
+    vectorVoid v = createVectorV(0, sizeof(int));
+    for (int i = 0; i < n; i++) {
+        int x;
+        scanf("%d", &x);
+        pushBackV(&v, &x);
+    }
+    for (int i = 0; i < n; i++) {
+        int x;
+        getVectorValueV(&v, i, &x);
+        printf("%d ", x);
+    }
+}
+void test2() {
+    size_t n;
+    scanf("%zd", &n);
+    vectorVoid v = createVectorV(0, sizeof(float));
+    for (int i = 0; i < n; i++) {
+        float x;
+        scanf("%f", &x);
+        pushBackV(&v, &x);
+    }
+    for (int i = 0; i < n; i++) {
+        float x;
+        getVectorValueV(&v, i, &x);
+        printf("%f ", x);
+    }
+}

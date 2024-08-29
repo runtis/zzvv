@@ -27,4 +27,20 @@ void shrinkToFitV(vectorVoid *v);
 
 void deleteVectorV(vectorVoid *v);
 
+bool isEmptyV(vectorVoid *v);
+
+bool isFullV(vectorVoid *v);
+
+void getVectorValueV(vectorVoid *v, size_t index, void *destination);
+
+void setVectorValueV(vectorVoid *v, size_t index, void *source);
+
+void popBackV(vectorVoid *v);
+
+void pushBackV(vectorVoid *v, void *source);
+
+void test1();
+
+void test2();
+
 #endif //UNTITLED1_VECTORVOID_H

@@ -5,6 +5,7 @@
 #include "libs/algorithms/array/array.h"
 #include "libs/data_structures/ordered_set/ordered_set.h"
 #include "libs/data_structures/vector/vector.h"
+#include "libs/data_structures/vector/vectorVoid.h"
 
 
 void test_ordered() {
@@ -43,7 +44,7 @@ void test_ordered() {
 
 int main() {
     //test_ordered();
-    test();
+    test1();
 
 
     return 0;
