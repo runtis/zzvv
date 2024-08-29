@@ -76,7 +76,7 @@ void swapRows(matrix *m, int i1, int i2){
 }
 
 void swapColumns(matrix m, int j1, int j2){
-    assert(j1 < m.nCols && j2 < m.nCols && j1 == 0 && j2 >= 0);
+    assert(j1 < m.nCols && j2 < m.nCols && j1 >= 0 && j2 >= 0);
     for (int i = 0; i < m.nRows; i++){
         swap(&m.values[i][j1], &m.values[i][j2], sizeof(m.values[i][j1]));
     }
