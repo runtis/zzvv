@@ -17,4 +17,14 @@ typedef struct vectorVoid {
     size_t baseTypeSize;
 } vectorVoid;
 
+vectorVoid createVectorV(size_t n, size_t baseTypeSize);
+
+void reserveV(vectorVoid *v, size_t newCapacity);
+
+void clearV(vectorVoid *v);
+
+void shrinkToFitV(vectorVoid *v);
+
+void deleteVectorV(vectorVoid *v);
+
 #endif //UNTITLED1_VECTORVOID_H
