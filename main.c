@@ -29,6 +29,7 @@ bool isUnique(int *a, int n) {
     return true;
 }
 
+
 void transposeIfMatrixHasNotEqualSumOfRows(matrix *m) {
     if (isSquareMatrix(m)) {
         int *sums = malloc(sizeof(int)*m->nRows);
@@ -43,60 +44,55 @@ void transposeIfMatrixHasNotEqualSumOfRows(matrix *m) {
     }
 }
 
-void test_transposeIfMatrixHasNotEqualSumOfRows_1() {
+
+bool isMutuallyInverseMatrices(matrix m1, matrix m2) {
+    if (isSquareMatrix(&m1) && isSquareMatrix(&m2) && m1.nRows == m2.nRows) {
+        matrix mul = mulMatrices(m1, m2);
+
+        if (isEMatrix(&mul)) {
+            freeMemMatrix(&mul);
+            return true;
+        } else {
+            freeMemMatrix(&mul);
+            return false;
+        }
+    }
+}
+
+void test_isMutuallyInverseMatrices_1() {
     matrix m = createMatrixFromArray((int[]) {},0, 0);
     transposeIfMatrixHasNotEqualSumOfRows(&m);
     freeMemMatrix(&m);
 }
 
-void test_transposeIfMatrixHasNotEqualSumOfRows_2() {
-    matrix m = createMatrixFromArray((int[]) {1, 4, 2,
-                                              3, 3, 6,
-                                              2, 6, 5},3, 3);
-    matrix result = createMatrixFromArray((int[]) {1, 3, 2,
-                                                   4, 3, 6,
-                                                   2, 6, 5},3, 3);
-    transposeIfMatrixHasNotEqualSumOfRows(&m);
-    assert(areTwoMatricesEqual(&m, &result));
-    freeMemMatrix(&m);
-    freeMemMatrix(&result);
+void test_isMutuallyInverseMatrices_2() {
+    matrix m1 = createMatrixFromArray((int[]) {3, -5,
+                                               1, -2},2, 2);
+    matrix m2 = createMatrixFromArray((int[]) {2, -5,
+                                               1, -3},2, 2);
+    assert(isMutuallyInverseMatrices(m1, m2));
+    freeMemMatrix(&m1);
+    freeMemMatrix(&m2);
 }
 
-void test_transposeIfMatrixHasNotEqualSumOfRows_3() {
-    matrix m = createMatrixFromArray((int[]) {1, 4, 2, 4,
-                                              3, 3, 6, 5,
-                                              2, 6, 5, 7},3, 4);
-    matrix result = createMatrixFromArray((int[]) {1, 4, 2, 4,
-                                                   3, 3, 6, 5,
-                                                   2, 6, 5, 7},3, 4);
-    transposeIfMatrixHasNotEqualSumOfRows(&m);
-    assert(areTwoMatricesEqual(&m, &result));
-    freeMemMatrix(&m);
-    freeMemMatrix(&result);
+void test_isMutuallyInverseMatrices_3() {
+    matrix m1 = createMatrixFromArray((int[]) {4, -5,
+                                               1, -2},2, 2);
+    matrix m2 = createMatrixFromArray((int[]) {2, -5,
+                                               1, -3},2, 2);
+    assert(!isMutuallyInverseMatrices(m1, m2));
+    freeMemMatrix(&m1);
+    freeMemMatrix(&m2);
 }
 
-void test_transposeIfMatrixHasNotEqualSumOfRows_4() {
-    matrix m = createMatrixFromArray((int[]) {1, 4, 2,
-                                              4, 1, 2,
-                                              1, 1, 5},3, 3);
-    matrix result = createMatrixFromArray((int[]) {1, 4, 2,
-                                                   4, 1, 2,
-                                                   1, 1, 5},3, 3);
-    transposeIfMatrixHasNotEqualSumOfRows(&m);
-    assert(areTwoMatricesEqual(&m, &result));
-    freeMemMatrix(&m);
-    freeMemMatrix(&result);
-}
-
-void test_transposeIfMatrixHasNotEqualSumOfRows() {
-    test_transposeIfMatrixHasNotEqualSumOfRows_1();
-    test_transposeIfMatrixHasNotEqualSumOfRows_2();
-    test_transposeIfMatrixHasNotEqualSumOfRows_3();
-    test_transposeIfMatrixHasNotEqualSumOfRows_4();
+void test_isMutuallyInverseMatrices() {
+    test_isMutuallyInverseMatrices_1();
+    test_isMutuallyInverseMatrices_2();
+    test_isMutuallyInverseMatrices_3();
 }
 
 int main() {
-    test_transposeIfMatrixHasNotEqualSumOfRows();
+    test_isMutuallyInverseMatrices();
 
     return 0;
 }
