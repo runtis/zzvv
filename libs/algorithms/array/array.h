@@ -66,4 +66,6 @@ int countIf_(const int *a, size_t n, int (*predicate )(int));
 // массива
 void deleteIf_(int *a, size_t *n, int (*deletePredicate )(int));
 
+int getSum(int *a, int size);
+
 # endif //LAB_ARRAY_H
