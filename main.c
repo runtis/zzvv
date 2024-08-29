@@ -10,58 +10,44 @@
 #include "libs/data_structures/matrix/matrix.h"
 #include "libs/algorithms/algorithm.h"
 
-int countNUnique(int *a, int n) {
-    int *unique_numbers = malloc(sizeof(int)*n);
-    int len = 0;
-    for (int i = 0; i < n; i++) {
-        bool is_in = false;
-        for (int j = 0; j < len && !is_in; j++) {
-            if (a[i] == unique_numbers[j]) {
-                is_in = true;
+int getNSpecialElement(matrix m) {
+    int result = 0;
+    for (int i = 0; i < m.nCols; i++) {
+        int sum = 0;
+        for (int j = 0; j < m.nRows; j++) {
+            sum += m.values[j][i];
+        }
+
+        for (int j = 0; j < m.nRows; j++) {
+            if (m.values[j][i] > sum - m.values[j][i]) {
+                result++;
             }
         }
-        if (!is_in) {
-            unique_numbers[len++] = a[i];
-        }
     }
-    free(unique_numbers);
-    return len;
-}
-
-int countEqClassesByRowsSum(matrix m) {
-    int *unique_sums = malloc(sizeof(int)*m.nRows);
-    for (int i = 0; i < m.nRows; i++) {
-        unique_sums[i] = getSum(m.values[i], m.nCols);
-    }
-    int result = countNUnique(unique_sums, m.nRows);
-    free(unique_sums);
     return result;
 }
 
-void test_countEqClassesByRowsSum_1() {
-    matrix m = createMatrixFromArray((int[]) {},0, 0);
-    assert(countEqClassesByRowsSum(m) == 0);
+void test_getNSpecialElement_1() {
+    matrix m = createMatrixFromArray((int[]) {}, 0, 0);
+    assert(getNSpecialElement(m) == 0);
     freeMemMatrix(&m);
 }
 
-void test_countEqClassesByRowsSum_2() {
-    matrix m = createMatrixFromArray((int[]) {7, 1,
-                                              2, 7,
-                                              5, 4,
-                                              4, 3,
-                                              1, 6,
-                                              8, 0},6, 2);
-    assert(countEqClassesByRowsSum(m) == 3);
+void test_getNSpecialElement_2() {
+    matrix m = createMatrixFromArray((int[]) {3, 5, 5, 4,
+                                              2, 3, 6, 7,
+                                              12, 2, 1, 2}, 3, 4);
+    assert(getNSpecialElement(m) == 2);
     freeMemMatrix(&m);
 }
 
-void test_countEqClassesByRowsSum() {
-    test_countEqClassesByRowsSum_1();
-    test_countEqClassesByRowsSum_2();
+void test_getNSpecialElement() {
+    test_getNSpecialElement_1();
+    test_getNSpecialElement_2();
 }
 
 int main() {
-    test_countEqClassesByRowsSum();
+    test_getNSpecialElement();
 
     return 0;
 }
