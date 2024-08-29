@@ -88,3 +88,10 @@
 1846	2080	7335024652043016	untitled1.exe	768cb98f6f6748bb
 13	458	7335054567977851	CMakeFiles/untitled1.dir/main.c.obj	1a0d462e92ae875a
 459	998	7335054573250017	untitled1.exe	768cb98f6f6748bb
+14	262	7335102033303588	CMakeFiles/untitled1.dir/main.c.obj	1a0d462e92ae875a
+7	330	7335102033490476	CMakeFiles/untitled1.dir/libs/algorithms/algorithm.c.obj	f691b4371f4e345b
+20	374	7335102034652723	libs/algorithms/CMakeFiles/algorithms.dir/algorithm.c.obj	4b47a0ad23032888
+262	711	7335102037806030	libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj	ebb282298959bb57
+374	1044	7335102041255083	libs/algorithms/libalgorithms.a	56274bb85b86e754
+712	1045	7335102041318795	libs/data_structures/libdata_structures.a	7d7d56a256d550f
+1046	1297	7335102043769298	untitled1.exe	768cb98f6f6748bb

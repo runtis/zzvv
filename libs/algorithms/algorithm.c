@@ -14,3 +14,7 @@ void swap(void * a, void * b, size_t len){
         q[i] = tmp;
     }
 }
+
+int max(int a, int b) {
+    return a > b ? a : b;
+}
