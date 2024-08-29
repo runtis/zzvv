@@ -10,44 +10,46 @@
 #include "libs/data_structures/matrix/matrix.h"
 #include "libs/algorithms/algorithm.h"
 
-int getNSpecialElement(matrix m) {
-    int result = 0;
-    for (int i = 0; i < m.nCols; i++) {
-        int sum = 0;
-        for (int j = 0; j < m.nRows; j++) {
-            sum += m.values[j][i];
+void swapPenultimateRow(matrix m) {
+    if (isSquareMatrix(&m)) {
+        int *column = malloc(sizeof(int)*m.nRows);
+        position min_pos = getMinValuePos(m);
+        for (int i = 0; i < m.nRows; i++) {
+            column[i] = m.values[i][min_pos.colIndex];
         }
-
-        for (int j = 0; j < m.nRows; j++) {
-            if (m.values[j][i] > sum - m.values[j][i]) {
-                result++;
-            }
+        for (int j = 0; j < m.nCols; j++) {
+            m.values[m.nCols - 2][j] = column[j];
         }
+        free(column);
     }
-    return result;
 }
 
-void test_getNSpecialElement_1() {
-    matrix m = createMatrixFromArray((int[]) {}, 0, 0);
-    assert(getNSpecialElement(m) == 0);
+void test_swapPenultimateRow_1() {
+    matrix m = createMatrixFromArray((int[]) {},0, 0);
+    swapPenultimateRow(m);
     freeMemMatrix(&m);
 }
 
-void test_getNSpecialElement_2() {
-    matrix m = createMatrixFromArray((int[]) {3, 5, 5, 4,
-                                              2, 3, 6, 7,
-                                              12, 2, 1, 2}, 3, 4);
-    assert(getNSpecialElement(m) == 2);
+void test_swapPenultimateRow_2() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              4, 5, 6,
+                                              7, 8, 1},3, 3);
+    matrix result = createMatrixFromArray((int[]) {1, 2, 3,
+                                                   1, 4, 7,
+                                                   7, 8, 1},3, 3);
+    swapPenultimateRow(m);
+    assert(areTwoMatricesEqual(&m, &result));
     freeMemMatrix(&m);
+    freeMemMatrix(&result);
 }
 
-void test_getNSpecialElement() {
-    test_getNSpecialElement_1();
-    test_getNSpecialElement_2();
+void test_swapPenultimateRow() {
+    test_swapPenultimateRow_1();
+    test_swapPenultimateRow_2();
 }
 
 int main() {
-    test_getNSpecialElement();
+    test_swapPenultimateRow();
 
     return 0;
 }
