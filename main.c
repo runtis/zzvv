@@ -9,45 +9,48 @@
 #include "libs/data_structures/matrix/matrix.h"
 
 
-void test_ordered() {
-    int arr[5];
-    inputArray_(arr, 3);
-    outputArray_(arr, 3);
-    ordered_array_set or_arr_1 = ordered_array_set_create_from_array(arr, 3);
-    ordered_array_set_print(or_arr_1);
-    ordered_array_set_insert(&or_arr_1, 1);
-    ordered_array_set_print(or_arr_1);
+void swap_rows_with_min_and_max_elements(matrix *m) {
+    position max_pos = getMaxValuePos(*m);
+    position min_pos = getMinValuePos(*m);
+    if (max_pos.rowIndex != min_pos.rowIndex) {
+        swapRows(m, max_pos.rowIndex, min_pos.rowIndex);
+    }
+}
 
-    inputArray_(arr, 3);
-    ordered_array_set or_arr_2 = ordered_array_set_create_from_array(arr, 3);
-    ordered_array_set_print(or_arr_2);
-    ordered_array_set_insert(&or_arr_2, 1);
-    ordered_array_set_print(or_arr_2);
+void test_swap_rows_with_min_and_max_elements_1() {
+    matrix m = createMatrixFromArray((int[]) {9, 4, 3,
+                                              5, 2, 6,
+                                              7, 8, 1}, 3, 3);
+    matrix result = createMatrixFromArray((int[]) {7, 8, 1,
+                                                   5, 2, 6,
+                                                   9, 4, 3}, 3, 3);
+    swap_rows_with_min_and_max_elements(&m);
+    assert(areTwoMatricesEqual(&m, &result));
+    freeMemMatrix(&m);
+    freeMemMatrix(&result);
+}
 
-    ordered_array_set result = ordered_array_set_intersection(or_arr_1, or_arr_2);
-    ordered_array_set_print(result);
+void test_swap_rows_with_min_and_max_elements_2() {
+    matrix m = createMatrixFromArray((int[]) {7, 4, 3,
+                                              5, 2, 6,
+                                              9, 8, 1}, 3, 3);
+    matrix result = createMatrixFromArray((int[]) {7, 4, 3,
+                                                   5, 2, 6,
+                                                   9, 8, 1}, 3, 3);
+    swap_rows_with_min_and_max_elements(&m);
+    assert(areTwoMatricesEqual(&m, &result));
+    freeMemMatrix(&m);
+    freeMemMatrix(&result);
+}
 
-    result = ordered_array_set_union(or_arr_1, or_arr_2);
-    ordered_array_set_print(result);
-
-    printf("%d\n", ordered_array_set_isEqual(or_arr_1, or_arr_2));
-    ordered_array_set_deleteElement(&or_arr_1, 1);
-    ordered_array_set_print(or_arr_1);
-    printf("%d\n", ordered_array_set_isSubset(or_arr_1, or_arr_2));
-
-    result = ordered_array_set_difference(or_arr_2, or_arr_1);
-    printf("diff\n");
-    ordered_array_set_print(result);
-    result = ordered_array_set_symmetricDifference(or_arr_1, or_arr_2);
-    printf("sy_diff\n");
-    ordered_array_set_print(result);
+void test_swap_rows_with_min_and_max_elements() {
+    test_swap_rows_with_min_and_max_elements_1();
+    test_swap_rows_with_min_and_max_elements_2();
 }
 
 int main() {
-    //test_ordered();
-    //test1();
-    test_matrix();
-
+    //test_matrix();
+    test_swap_rows_with_min_and_max_elements();
 
     return 0;
 }
