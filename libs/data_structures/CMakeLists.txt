@@ -5,4 +5,6 @@ bitset/bitset.h
         ordered_set/ordered_set.h
         unordered_set/unordered_set.c
         unordered_set/unordered_set.h
+        vector/vector.h
+        vector/vector.c
 )
