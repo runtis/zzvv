@@ -16,3 +16,8 @@
 708	891	7323653083384146	libs/data_structures/CMakeFiles/data_structures.dir/vector/vectorVoid.c.obj	8e5d1ac3ef80ede8
 6	283	7335117467178192	libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj	ebb282298959bb57
 6	159	7343613432906116	libs/algorithms/CMakeFiles/algorithms.dir/for_dm/for_dm.c.obj	68ffca90a495ff50
+25	367	7347095638549663	CMakeFiles/untitled1.dir/libs/string_/string_.c.obj	2fc13ace783cf199
+11	368	7347095638559638	CMakeFiles/untitled1.dir/main.c.obj	1a0d462e92ae875a
+30	382	7347095638858830	libs/algorithms/CMakeFiles/algorithms.dir/for_dm/for_dm.c.obj	68ffca90a495ff50
+382	528	7347095640316722	libs/algorithms/libalgorithms.a	91495bfebf13ee51
+528	918	7347095644177888	untitled1.exe	879eb2386354f045

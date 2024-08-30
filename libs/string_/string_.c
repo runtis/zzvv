@@ -1,3 +1,6 @@
+//
+// Created by yaros on 13.04.2024.
+//
 #include "string_.h"
 #include <stdio.h>
 #include <ctype.h>
@@ -163,4 +166,27 @@ void test_find_space_reverse_4() {
     char string[] = " ello";
 
     assert(findSpaceReverse(string + 4, string) == string);
+}
+
+void test_string_1(){
+    test_find_1();
+    test_find_2();
+    test_find_3();
+    test_find_4();
+    test_find_non_space_1();
+    test_find_non_space_2();
+    test_find_non_space_3();
+    test_find_non_space_4();
+    test_find_space_1();
+    test_find_space_2();
+    test_find_space_3();
+    test_find_space_4();
+    test_find_non_space_reverse_1();
+    test_find_non_space_reverse_2();
+    test_find_non_space_reverse_3();
+    test_find_non_space_reverse_4();
+    test_find_space_reverse_1();
+    test_find_space_reverse_2();
+    test_find_space_reverse_3();
+    test_find_space_reverse_4();
 }

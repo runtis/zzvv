@@ -10,6 +10,7 @@
 #include "libs/data_structures/matrix/matrix.h"
 #include "libs/algorithms/algorithm.h"
 #include "libs/algorithms/for_dm/for_dm.h"
+#include "libs/string_/string_.h"
 
 double getScalarProduct(int *a, int *b, int n) {
     double result = 0;
@@ -42,7 +43,7 @@ void test_getSpecialScalarProduct() {
 }
 
 int main() {
-    test123();
+    test_string_1();
 
     return 0;
 }
