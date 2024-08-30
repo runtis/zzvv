@@ -21,6 +21,11 @@ typedef struct WordDescriptor {
     char *end;
 } WordDescriptor;
 
+typedef struct BagOfWords {
+    WordDescriptor words[MAX_N_WORDS_IN_STRING];
+    size_t size;
+} BagOfWords;
+
 size_t strlen_(const char *begin);
 
 char* find(char *begin, char *end, int ch);
@@ -78,5 +83,17 @@ bool are_two_words_equal(WordDescriptor a, WordDescriptor b);
 void replace(char *source, char *w1, char *w2);
 
 void test_replace();
+
+bool are_two_words_ordered(WordDescriptor word1, WordDescriptor word2);
+
+bool are_words_ordered(char *string);
+
+void test_are_words_ordered();
+
+void getBagOfWords(BagOfWords *bag, char *s);
+
+void print_words_in_reversed_order(char *string);
+
+void test_print_words_in_reversed_order();
 
 #endif //UNTITLED1_STRING__H
