@@ -43,7 +43,7 @@ void test_getSpecialScalarProduct() {
 }
 
 int main() {
-    test_string_1();
+    test_string();
 
     return 0;
 }

@@ -23,6 +23,8 @@ char *findNonSpaceReverse(char *rbegin, const char *rend);
 
 char *findSpaceReverse(char *rbegin, const char *rend);
 
-void test_string_1();
+int strcmp_(const char *lhs, const char *rhs);
+
+void test_string();
 
 #endif //UNTITLED1_STRING__H
