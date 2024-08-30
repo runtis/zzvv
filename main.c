@@ -10,77 +10,72 @@
 #include "libs/data_structures/matrix/matrix.h"
 #include "libs/algorithms/algorithm.h"
 
-int countValues(const int *a, int n, int value) {
-    int result = 0;
-    for (int i = 0; i < n; i++) {
-        if (a[i] == value) {
-            result++;
-        }
-    }
-    return result;
-}
-
-int countZeroRows(matrix m) {
-    int result = 0;
+int get_matrix_norm(matrix m) {
+    int res = 0;
     for (int i = 0; i < m.nRows; i++) {
-        if (countValues(m.values[i], m.nCols, 0) == m.nCols) {
-            result++;
+        for (int j = 0; j < m.nCols; j++) {
+            int norm = abs(m.values[i][j]);
+            if (norm > res) {
+                res = norm;
+            }
         }
     }
-    return result;
+    return res;
 }
 
-void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix) {
-    int *zero_rows = malloc(sizeof(int)*nMatrix);
-    int max_zeros = 0;
-    for (int i = 0; i < nMatrix; i++) {
-        zero_rows[i] = countZeroRows(ms[i]);
-        if (zero_rows[i] > max_zeros) {
-            max_zeros = zero_rows[i];
+void print_matrices_with_min_norm(matrix *ms, int n) {
+    if (n > 0) {
+        int *norms = malloc(sizeof(int)*n);
+        norms[0] = get_matrix_norm(ms[0]);
+        int min_norm = norms[0];
+        for (int i = 1; i < n; i++) {
+            norms[i] = get_matrix_norm(ms[i]);
+            if (norms[i] < min_norm) {
+                min_norm = norms[i];
+            }
         }
-    }
 
-    for (int i = 0; i < nMatrix; i++) {
-        if (zero_rows[i] == max_zeros) {
-            outputMatrix(ms[i]);
+        for (int i = 0; i < n; i++) {
+            if (norms[i] == min_norm) {
+                outputMatrix(ms[i]);
+            }
         }
     }
-    free(zero_rows);
 }
 
-void test_printMatrixWithMaxZeroRows() {
-    matrix m1 = createMatrixFromArray((int[]) {0, 1,
-                                               1, 0,
-                                               0, 0},3, 2);
+void test_print_matrices_with_min_norm_1() {
+    matrix *ms = getMemArrayOfMatrices(0, 0, 0);
+    print_matrices_with_min_norm(ms, 0);
+}
+
+void test_print_matrices_with_min_norm_2() {
+    matrix m1 = createMatrixFromArray((int[]) {2, 1,
+                                               1, 3},2, 2);
     matrix m2 = createMatrixFromArray((int[]) {1, 1,
-                                               2, 1,
-                                               1, 1},3, 2);
-    matrix m3 = createMatrixFromArray((int[]) {0, 0,
-                                               0, 0,
-                                               4, 7},3, 2);
-    matrix m4 = createMatrixFromArray((int[]) {0, 0,
-                                               0, 1,
-                                               0, 0},3, 2);
-    matrix m5 = createMatrixFromArray((int[]) {0, 1,
-                                               0, 2,
-                                               0, 3},3, 2);
+                                               2, 1},2, 2);
+    matrix m3 = createMatrixFromArray((int[]) {3, 4,
+                                               1, 5},2, 2);
+    matrix m4 = createMatrixFromArray((int[]) {4, 4,
+                                               4, 1},2, 2);
+    matrix m5 = createMatrixFromArray((int[]) {2, 1,
+                                               1, 2},2, 2);
     matrix *ms = getMemArrayOfMatrices(5, 3, 2);
     ms[0] = m1;
     ms[1] = m2;
     ms[2] = m3;
     ms[3] = m4;
     ms[4] = m5;
-    assert(countZeroRows(m1) == 1);
-    assert(countZeroRows(m2) == 0);
-    assert(countZeroRows(m3) == 2);
-    assert(countZeroRows(m4) == 2);
-    assert(countZeroRows(m5) == 0);
-    printMatrixWithMaxZeroRows(ms, 5);
+    print_matrices_with_min_norm(ms, 5);
     freeMemMatrices(ms, 5);
 }
 
+void test_print_matrices_with_min_norm() {
+    test_print_matrices_with_min_norm_1();
+    test_print_matrices_with_min_norm_2();
+}
+
 int main() {
-    test_printMatrixWithMaxZeroRows();
+    test_print_matrices_with_min_norm();
 
     return 0;
 }
