@@ -10,6 +10,7 @@
 #include <ctype.h>
 #include <assert.h>
 #include <memory.h>
+#include <stdbool.h>
 
 #define MAX_STRING_SIZE 100
 #define MAX_N_WORDS_IN_STRING 100
@@ -72,6 +73,10 @@ void replace_digits_with_spaces(char *string);
 
 void test_replace_digits_with_spaces();
 
+bool are_two_words_equal(WordDescriptor a, WordDescriptor b);
 
+void replace(char *source, char *w1, char *w2);
+
+void test_replace();
 
 #endif //UNTITLED1_STRING__H
