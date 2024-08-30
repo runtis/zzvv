@@ -33,4 +33,8 @@ char* copyIfReverse(char *rbeginSource, const char *rendSource, char *beginDesti
 
 void test_string();
 
+void removeNonLetters(char *s);
+
+
+
 #endif //UNTITLED1_STRING__H
