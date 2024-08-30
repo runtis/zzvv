@@ -9,6 +9,7 @@
 #include "libs/data_structures/vector/vectorVoid.h"
 #include "libs/data_structures/matrix/matrix.h"
 #include "libs/algorithms/algorithm.h"
+#include "libs/algorithms/for_dm/for_dm.h"
 
 double getScalarProduct(int *a, int *b, int n) {
     double result = 0;
@@ -41,7 +42,7 @@ void test_getSpecialScalarProduct() {
 }
 
 int main() {
-    test_getSpecialScalarProduct();
+    test123();
 
     return 0;
 }

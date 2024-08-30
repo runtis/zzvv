@@ -73,6 +73,12 @@ build CMakeFiles/untitled1.dir/libs/data_structures/bitset/bitset.c.obj: C_COMPI
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\libs\data_structures\bitset
 
+build CMakeFiles/untitled1.dir/libs/string_/string_.c.obj: C_COMPILER__untitled1_unscanned_Debug C$:/Users/yaros/CLionProjects/untitled1/libs/string_/string_.c || cmake_object_order_depends_target_untitled1
+  DEP_FILE = CMakeFiles\untitled1.dir\libs\string_\string_.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\untitled1.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled1.dir\libs\string_
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled1
@@ -81,7 +87,7 @@ build CMakeFiles/untitled1.dir/libs/data_structures/bitset/bitset.c.obj: C_COMPI
 #############################################
 # Link the executable untitled1.exe
 
-build untitled1.exe: C_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.c.obj CMakeFiles/untitled1.dir/libs/algorithms/algorithm.c.obj CMakeFiles/untitled1.dir/libs/algorithms/array/array.c.obj CMakeFiles/untitled1.dir/libs/data_structures/bitset/bitset.c.obj | libs/algorithms/libalgorithms.a libs/data_structures/libdata_structures.a || libs/algorithms/libalgorithms.a libs/data_structures/libdata_structures.a
+build untitled1.exe: C_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.c.obj CMakeFiles/untitled1.dir/libs/algorithms/algorithm.c.obj CMakeFiles/untitled1.dir/libs/algorithms/array/array.c.obj CMakeFiles/untitled1.dir/libs/data_structures/bitset/bitset.c.obj CMakeFiles/untitled1.dir/libs/string_/string_.c.obj | libs/algorithms/libalgorithms.a libs/data_structures/libdata_structures.a || libs/algorithms/libalgorithms.a libs/data_structures/libdata_structures.a
   FLAGS = -g
   LINK_LIBRARIES = libs/algorithms/libalgorithms.a  libs/data_structures/libdata_structures.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled1.dir
@@ -168,6 +174,12 @@ build libs/algorithms/CMakeFiles/algorithms.dir/array/array.c.obj: C_COMPILER__a
   OBJECT_DIR = libs\algorithms\CMakeFiles\algorithms.dir
   OBJECT_FILE_DIR = libs\algorithms\CMakeFiles\algorithms.dir\array
 
+build libs/algorithms/CMakeFiles/algorithms.dir/for_dm/for_dm.c.obj: C_COMPILER__algorithms_unscanned_Debug C$:/Users/yaros/CLionProjects/untitled1/libs/algorithms/for_dm/for_dm.c || cmake_object_order_depends_target_algorithms
+  DEP_FILE = libs\algorithms\CMakeFiles\algorithms.dir\for_dm\for_dm.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = libs\algorithms\CMakeFiles\algorithms.dir
+  OBJECT_FILE_DIR = libs\algorithms\CMakeFiles\algorithms.dir\for_dm
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target algorithms
@@ -176,7 +188,7 @@ build libs/algorithms/CMakeFiles/algorithms.dir/array/array.c.obj: C_COMPILER__a
 #############################################
 # Link the static library libs\algorithms\libalgorithms.a
 
-build libs/algorithms/libalgorithms.a: C_STATIC_LIBRARY_LINKER__algorithms_Debug libs/algorithms/CMakeFiles/algorithms.dir/algorithm.c.obj libs/algorithms/CMakeFiles/algorithms.dir/array/array.c.obj
+build libs/algorithms/libalgorithms.a: C_STATIC_LIBRARY_LINKER__algorithms_Debug libs/algorithms/CMakeFiles/algorithms.dir/algorithm.c.obj libs/algorithms/CMakeFiles/algorithms.dir/array/array.c.obj libs/algorithms/CMakeFiles/algorithms.dir/for_dm/for_dm.c.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = libs\algorithms\CMakeFiles\algorithms.dir
   POST_BUILD = cd .

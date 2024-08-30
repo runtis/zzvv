@@ -11,4 +11,5 @@ bitset/bitset.h
         vector/vectorVoid.c
         matrix/matrix.h
         matrix/matrix.c
+        ../algorithms/for_dm/for_dm.h
 )
