@@ -223,7 +223,41 @@ void test_string_1(){
     test_find_space_reverse_4();
 }
 
+void test_copy() {
+    char string[] = "hahh";
+    char new_string[4];
+    copy(string, string + 3, new_string);
+    char result[] = "hah";
+
+    assert(strcmp_(new_string, result) == 0);
+}
+
+void test_copyIf() {
+    char string[] = "hahh";
+    char new_string[4];
+    copyIf(string, string + 3, new_string, (int (*)(int)) is_h);
+    char result[] = "hh";
+
+    assert(strcmp_(new_string, result) == 0);
+}
+
+void test_copyIfReverse() {
+    char string[] = "haw";
+    char new_string[3];
+    copyIfReverse(string + 3, string, new_string, (int (*)(int)) is_h);
+    char result[] = "wh";
+
+    assert(strcmp_(new_string, result) == 0);
+}
+
+void test_copy_full(){
+    test_copy();
+    test_copyIf();
+    test_copyIfReverse();
+}
+
 void test_string(){
     test_string_1();
     test_strcmp_();
+    test_copy_full();
 }
