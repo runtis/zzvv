@@ -10,42 +10,55 @@
 #include "libs/data_structures/matrix/matrix.h"
 #include "libs/algorithms/algorithm.h"
 
-int getNSpecialElement2(matrix m) {
+float getDistance(int *a, int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += a[i]*a[i];
+    }
+    return sqrtf(sum);
+}
+
+double getScalarProduct(int *a, int *b, int n) {
+    double result = 0;
+    for (int i = 0; i < n; i++) {
+        result += a[i] * b[i];
+    }
+    return result;
+}
+
+double getCosine(int *a, int *b, int n) {
+    float len_a = getDistance(a, n);
+    float len_b = getDistance(b, n);
+    if (len_a == 0 || len_b == 0) {
+        fprintf(stderr, "zeros vector`s length");
+    }
+    return getScalarProduct(a, b, n) / (len_a * len_b);
+}
+
+int getVectorIndexWithMaxAngle(matrix m, int *b) {
     int result = 0;
-    for (int i = 0; i < m.nRows; i++) {
-        for (int j = 0; j < m.nCols; j++) {
-            bool is_lefts_less = true;
-            for (int g = j - 1; g >= 0; g--) {
-                if (m.values[i][g] >= m.values[i][j]) {
-                    is_lefts_less = false;
-                }
-            }
-            if (is_lefts_less) {
-                bool is_rights_more = true;
-                for (int g = j + 1; g < m.nCols; g++) {
-                    if (m.values[i][g] <= m.values[i][j]) {
-                        is_rights_more = false;
-                    }
-                }
-                if (is_rights_more) {
-                    result++;
-                }
-            }
+    double max_cos = getCosine(m.values[0], b, m.nCols);
+    for (int i = 1; i < m.nRows; i++) {
+        double cos = getCosine(m.values[i], b, m.nCols);
+        if (cos > max_cos) {
+            max_cos = cos;
+            result = i;
         }
     }
     return result;
 }
 
-void test_getNSpecialElement2() {
-    matrix m = createMatrixFromArray((int[]) {2, 3, 5, 5, 4,
-                                              6, 2, 3, 8, 12,
-                                              12, 12, 2, 1, 2},3, 5);
-    assert(getNSpecialElement2(m) == 4);
+void test_getVectorIndexWithMaxAngle() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              4, 5, 6,
+                                              7, 8, 9}, 3,3);
+    int b[] = {5, 8, 9};
+    assert(getVectorIndexWithMaxAngle(m, b) == 1);
     freeMemMatrix(&m);
 }
 
 int main() {
-    test_getNSpecialElement2();
+    test_getVectorIndexWithMaxAngle();
 
     return 0;
 }
